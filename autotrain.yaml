@@ -1,0 +1,29 @@
+spec:
+  containers:
+  - name: autotrain
+    image: <YOUR_REPOSITORY_URL>/autotrain
+    env:
+      SNOWFLAKE_MOUNTED_STAGE_PATH: stage
+      MODEL_CARD: meta-llama/Llama-2-7b-hf # Hugging Face model card
+      HF_TOKEN: <HF_TOKEN>
+      PROJECT_NAME: stage/llama-2-ft # Should be in stage/. Name must mirror model card for prompting
+    resources:
+      requests:
+        nvidia.com/gpu: 2 # <2 for base vs. fine-tuned model, otherwise 1>
+      limits:
+        nvidia.com/gpu: 2 # <2 for base vs. fine-tuned model, otherwise 1>
+    volumeMounts:
+    - name: stage
+      mountPath: /workspace/stage
+  endpoints:
+  - name: jupyter # View fine-tuning logs in jupyter terminal
+    port: 8888
+    public: true
+  - name: app # Quick gradio chat app to confirm fine-tuning
+    port: 8000
+    public: true
+  volumes:
+  - name: stage
+    source: '@DATA_STAGE'
+    uid: 1000
+    gid: 1000
