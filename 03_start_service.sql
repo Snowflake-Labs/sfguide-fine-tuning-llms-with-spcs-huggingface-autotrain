@@ -7,7 +7,7 @@ CREATE SERVICE AUTOTRAIN
   SPECIFICATION_FILE = autotrain.yaml
   MIN_INSTANCES = 1
   MAX_INSTANCES = 1
-  EXTERNAL_ACCESS_INTEGRATIONS = (ALLOW_ALL_EAI);
+  EXTERNAL_ACCESS_INTEGRATIONS = (ALLOW_ALL_EAI)
   COMMENT = '{"origin": "sf_sit",
              "name": "hf_autotrain",
              "version": {"major": 1, "minor": 1},
