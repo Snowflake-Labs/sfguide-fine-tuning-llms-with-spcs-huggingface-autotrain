@@ -1,7 +1,7 @@
 spec:
   containers:
   - name: autotrain
-    image: sfpscogs-scs.registry.snowflakecomputing.com/container_hol_db/public/image_repo/autotrain
+    image: <REPOSITORY_URL>/autotrain
     secrets:
     - snowflakeSecret: container_hol_db.public.hf_token
       secretKeyRef: secret_string
