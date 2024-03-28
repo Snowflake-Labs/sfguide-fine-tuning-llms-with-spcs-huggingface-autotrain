@@ -1,7 +1,7 @@
 // Create table of training data
   CREATE OR REPLACE TABLE CONTAINER_HOL_DB.PUBLIC.TRAINING_TABLE AS
   SELECT 
-      CONCAT(INSTRUCTION,' ### Metadata: ', METADATA,' ### Response: ', DESCRIPTION) AS "text"
+      CONCAT('<s>[INST] <<SYS>>', INSTRUCTION,'<</SYS>>', METADATA,'[/INST]', DESCRIPTION, '</s>') AS "text"
   FROM (
   SELECT
     'You are a customer service assistant with knowledge of product rewards available to customers. Describe this reward offering given reward metadata.' as INSTRUCTION
